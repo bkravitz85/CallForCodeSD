@@ -1,12 +1,7 @@
-# CallForCode Part I / IV - Building Awesome Disaster Machine Learning Applications for ~~Dummies~~ (Me && You)
+# CallForCode Donate Your Unused Data to Firerelief Efforts
 
 ## Telling Your Datastory
 
-Anyone in tech knows that now more than ever companies are changing their business requirements and compliance structure on a more frequent basis. With Deep Learning Forward Propagating Networks and constant advances in autonomous services; integrating data realtime is a competitive advantage any skilled developer should have in their wheelhouse. Working with Event Driven Architecture and on-demand data doesn't have to be overly complex, we will look at two classic platforms Salesforce and IBM Bluemix; apply Event Driven architecture (Platform Events) through several methodoligies and use cases.
-
-## IBM Call for Code
-
-https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif
 
 ![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)
 
@@ -14,31 +9,26 @@ On August 19th the planet celebrated the United Nation's Humanitarian Day to rai
 
 > Call for Code aims to help improve the lives of those communities who are most threatened by natural disasters and in turn, will help ease and improve the important role that humanitarian agencies play.
 
-Projects must utilize 5 myCloud Services and provide a need to disaster first responders. Sample projects included utilizing aerial drones that could provide topography insights into which areas need aid, uncovering deep learning image processing to treat and identify victims, while using the provided IBM "Weather Company API" to fuel disaster data and realness to the competition.
-
-## Things You Will Need
+Our project utilizes 5 myCloud Services and provides data donations to disaster first responders. Our system uses IBM Data Integration Services to send data to and from Salesforce, Machine Learning to find most at risk areas and Blockchain to record asset transfers. (Data)
+## Items We Used
 
 | Item | Location | Description |
 | --- | --- | --- |
 | Salesforce | login.salesforce.com | Developer Edition of Salesforce with Analtyics Studio |
 | IBM myCloud | https://console.bluemix.net/catalog/ | IBM's Catalog of Services |
-| Weather Company API | http://developer.weather.com | Raw Data to Use for Competition CSV Data File and JSON Data from the API |
+| Weather Company API | http://developer.weather.com | Raw Data to Use for Competition CSV Data File and JSON Data from the API | APP Connect | https://console.bluemix.net/catalog/ | Allows to integrate IBM Data to Salesforce
 
 ## HIC MANEBIMUS OPTIME
 
 In order to build an event driven disaster project, lets define a few metrics so that our datasets can be meaningful and perform to our scope:
 
-| **Define Scope:** | **Predict if a household disaster will occur...** |
+| **Define Scope:** | **Predict where first responders will have their data throttled....** |
 | --- | --- |
 | **Define Performance:** | **Our target accurancy should be over < 70%** |
-| **Context: ** | **Using IBM Weather Company Data we can predict with 70% or greater accuracy which homes will be effected by disasters.** |
-| Solution Data:  | Using Machine Learning Workflows to process and transform Weather Company Data to create a prediction model, this model must predict which homes will be effected by impending types of disasters. |
+| **Context: ** | **Using IBM Weather Company Data along with Wigle.net API we can predict with 70% or greater accuracy which areas will have deficient bandwidth resources (Cell, Wifi, etc) .** |
+| Solution Data:  | Using Machine Learning Workflows to process and transform Weather Company Data to create a prediction model, this model must predict which homes/devices will be effected by impending types of disasters. |
 
-As long as we keep our scope within reasonable limits we should be able to create two distinct objects, Disasters and Households.
-
-## So you wanna be a Salesforce Enterprise Architect?
-
-![eap](eap.gif)![eap](file:///Users/kr4v/Documents/eap.gif)
+## Creating Object Model
 
 Let's take our proposed data types and transform them into some metadata!
 
