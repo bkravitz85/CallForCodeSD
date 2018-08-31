@@ -1,0 +1,55 @@
+<apex:component >
+    <svg width="470px" height="53px" viewBox="0 0 470 53" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Component/Progress Indicator/Enabled</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Component/Progress-Indicator/Enabled" transform="translate(4.000000, 2.000000)">
+            <g id="Component/Progress-Indicator/Pieces/Future" transform="translate(302.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
+                <g id="Additional-Step">
+                    <text id="Label" opacity="0.5" font-family="IBMPlexSans, IBM Plex Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#5A6872">
+                        <tspan x="116" y="44.3617021">Share</tspan>
+                    </text>
+                    <g id="Component/Progress-Indicator/States/Future" transform="translate(116.000000, 0.765957)" fill="#8C9BA5">
+                        <path d="M12,0 C18.6,0 24,5.4 24,12 C24,18.6 18.6,24 12,24 C5.4,24 0,18.6 0,12 C0,5.4 5.4,0 12,0 Z M12,2 C6.5,2 2,6.5 2,12 C2,17.5 6.5,22 12,22 C17.5,22 22,17.5 22,12 C22,6.5 17.5,2 12,2 Z" id="Icon/Progress-Indicator/Future"></path>
+                    </g>
+                    <rect id="Line" fill="#8C9BA5" x="0" y="11" width="117" height="2"></rect>
+                </g>
+            </g>
+            <g id="Component/Progress-Indicator/Pieces/Future" transform="translate(163.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
+                <g id="Additional-Step">
+                    <text id="Label" opacity="0.5" font-family="IBMPlexSans, IBM Plex Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#5A6872">
+                        <tspan x="116" y="44.3617021">Donate</tspan>
+                    </text>
+                    <g id="Component/Progress-Indicator/States/Future" transform="translate(116.000000, 0.765957)" fill="#8C9BA5">
+                        <path d="M12,0 C18.6,0 24,5.4 24,12 C24,18.6 18.6,24 12,24 C5.4,24 0,18.6 0,12 C0,5.4 5.4,0 12,0 Z M12,2 C6.5,2 2,6.5 2,12 C2,17.5 6.5,22 12,22 C17.5,22 22,17.5 22,12 C22,6.5 17.5,2 12,2 Z" id="Icon/Progress-Indicator/Future"></path>
+                    </g>
+                    <rect id="Line" fill="#8C9BA5" x="0" y="11" width="117" height="2"></rect>
+                </g>
+            </g>
+            <g id="Component/Progress-Indicator/Pieces/Past-or-Current" transform="translate(23.000000, 0.000000)" fill-rule="evenodd" stroke-width="1">
+                <g id="Additional-Step">
+                    <text id="Label" font-family="IBMPlexSans-SemiBold, IBM Plex Sans" font-size="14" font-weight="500" line-spacing="18" fill="#3D70B2">
+                        <tspan x="116" y="42">Analzye</tspan>
+                    </text>
+                    <g id="Component/Progress-Indicator/States/Current" transform="translate(116.000000, 0.000000)">
+                        <g id="Icon/Progress-Indicator/Current" transform="translate(0.000000, 1.000000)">
+                            <path d="M12,1.5 C17.7761424,1.5 22.5,6.22385763 22.5,12 C22.5,17.7761424 17.7761424,22.5 12,22.5 C6.22385763,22.5 1.5,17.7761424 1.5,12 C1.5,6.22385763 6.22385763,1.5 12,1.5 Z M12,0.5 C5.67614237,0.5 0.5,5.67614237 0.5,12 C0.5,18.3238576 5.67614237,23.5 12,23.5 C18.3238576,23.5 23.5,18.3238576 23.5,12 C23.5,5.67614237 18.3238576,0.5 12,0.5 Z" id="Shape" stroke="#3D70B2"></path>
+                            <circle id="Oval-4" fill="#3D70B2" cx="12" cy="12" r="6"></circle>
+                        </g>
+                    </g>
+                    <rect id="Line" fill="#3D70B2" x="0" y="11" width="117" height="2"></rect>
+                </g>
+            </g>
+            <text id="Label" font-family="IBMPlexSans-SemiBold, IBM Plex Sans" font-size="14" font-weight="500" line-spacing="18" fill="#3D70B2">
+                <tspan x="0" y="42">Search</tspan>
+            </text>
+            <g id="Component/Progress-Indicator/States/Completed" fill="#3D70B2" fill-rule="evenodd">
+                <path d="M12,2 C17.5,2 22,6.5 22,12 C22,17.5 17.5,22 12,22 C6.5,22 2,17.5 2,12 C2,6.5 6.5,2 12,2 L12,2 Z M12,0 C5.4,0 0,5.4 0,12 C0,18.6 5.4,24 12,24 C18.6,24 24,18.6 24,12 C24,5.4 18.6,0 12,0 L12,0 L12,0 Z" id="Shape"></path>
+                <polygon id="Shape" points="10 14 7.4 11.4 6 12.8 10 16.8 17.5 9.4 16.1 8"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
+</apex:component>

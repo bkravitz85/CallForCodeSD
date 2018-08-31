@@ -1,0 +1,14 @@
+<apex:component >
+            <apex:includeScript value="https://unpkg.com/carbon-components@latest/scripts/carbon-components.js"/>
+    <apex:includeScript value="https://unpkg.com/carbon-components/umd/index.js"/>
+<apex:stylesheet value="https://unpkg.com/carbon-addons-bluemix@latest/css/carbon-components.min.css"/>
+    <span class="bx--tag bx--tag--ibm">IBM</span>
+<span class="bx--tag bx--tag--beta">Beta</span>
+<span class="bx--tag bx--tag--third-party">Third-Party</span>
+<span class="bx--tag bx--tag--local">Watson AI</span>
+<span class="bx--tag bx--tag--dedicated">Salesforce</span>
+<span class="bx--tag bx--tag--custom">Custom Code</span>
+<span class="bx--tag bx--tag--experimental">Experimental</span>
+<span class="bx--tag bx--tag--community">Wave Analytics</span>
+<span class="bx--tag bx--tag--private">Einstein</span>
+</apex:component>

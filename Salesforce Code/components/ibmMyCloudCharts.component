@@ -1,0 +1,1091 @@
+<apex:component >
+    <apex:includeScript value="https://cdn.zingchart.com/zingchart.min.js"/>
+    
+    <style>
+        html,
+        body,
+        #myChart {
+        height: 100%;
+        width: 100%;
+        min-height: 300px;
+        }
+        .dashboard {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 200px;
+        min-height: 100%;
+        }
+        
+        .column {
+        height: 300px;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        flex-wrap: wrap;
+        }
+        
+        .item {
+        margin: 5px;
+        flex-grow: 1;
+        min-height: 200px;
+        min-width: 250px;
+        }
+        
+        .small.item {
+        min-width: 305px;
+        height: 200px:
+        }
+        
+        #br {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        flex-wrap: wrap;
+        min-height: 100%;
+        }
+        
+        #br > section {
+        flex-grow: 1;
+        }
+    </style>
+    <div id="br">
+        
+        <section>
+            
+            <div id="chart6" class='small item'>              
+            </div><c:ibmMyCloudTableCell />
+            <c:ibmMyCloudChartComponents />
+            <div id="chart7" class='small item'>
+                <button class="bx--btn bx--btn--secondary" style="width: 100%" type="button">Restart Services</button>
+                <button class="bx--btn bx--btn--secondary" style="width: 100%" type="button">Disable Services</button>
+                <button class="bx--btn bx--btn--secondary" style="width: 100%" type="button">Terminate Instances</button>
+                
+                
+            </div>
+            
+        </section>
+        <div>
+            <div class='column'>
+                
+                <div id="chart8" class='item'></div>
+                <div id="chart2" class='small item'>
+                </div>
+                
+            </div>
+            <button style="height:150px;width:520px;font-weight:900;font-size:40px;">DONATE NOW!</button>
+            
+        </div>
+        
+    </div>
+    <script>
+    var myConfig = {
+        graphset: [{
+            type: "area",
+            title: {
+                mediaRules: [{ /*zingchart media query syntax*/
+                    maxWidth: 399,
+                    text: "New vs. Capacity",
+                    fontSize: 10,
+                    fontColor: "#fff",
+                    textAlign: "left",
+                    paddingLeft: "11%",
+                    backgroundColor: "#0B82E0",
+                    height: "18%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    text: "Downloads vs. Capacity",
+                    height: "20%",
+                    marginTop: "2%",
+                    fontSize: 11,
+                    fontColor: "#fff",
+                    textAlign: "center",
+                    backgroundColor: "#0B82E0",
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Available Data vs. Capacity",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "center",
+                    backgroundColor: "none"
+                }, {
+                    minWidth: 1024,
+                    text: "Available Data vs. Capacity",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "left",
+                    paddingLeft: "16%"
+                }]
+            },
+            subtitle: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    visible: false
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    visible: false
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "AT&T",
+                    fontSize: 8,
+                    fontColor: "#fff",
+                    height: "12%",
+                    marginTop: "18%",
+                    textAlign: "center",
+                    backgroundColor: '#0B82E0'
+                }, {
+                    minWidth: 1024,
+                    text: "AT&T",
+                    fontSize: 9,
+                    fontColor: "#fff",
+                    height: "13%",
+                    marginTop: "19%",
+                    textAlign: "left",
+                    paddingLeft: "16%",
+                    backgroundColor: "#0B82E0",
+                }]
+            },
+            legend: {
+                backgroundColor: "none",
+                borderWidth: 0,
+                borderColor: "none",
+                shadow: 0,
+                toggleAction: "remove",
+                item: {
+                    fontColor: "#444"
+                },
+                mediaRules: [{
+                    minWidth: 10,
+                    maxWidth: 1024,
+                    visible: false
+                }, {
+                    minWidth: 1024,
+                    align: "left",
+                    verticalAlign: "middle"
+                }]
+            },
+            scaleX: {
+                lineColor: "none",
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                }
+            },
+            scaleY: {
+                lineColor: "none",
+                minValue: 0,
+                maxValue: 100,
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                },
+                guide: {
+                    visible: false
+                }
+            },
+            plot: {
+                aspect: "spline",
+                marker: {
+                    visible: false
+                },
+                tooltip: {
+                    placement: "node:top",
+                    offsetY: 0
+                }
+            },
+            plotarea: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    margin: "45% 5% 5% 5%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    margin: "40% 5% 5% 5%"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    margin: "45% 5% 10% 5%"
+                }, {
+                    minWidth: 1024,
+                    margin: "30% 4% 4% 4%"
+                }]
+            },
+            mediaRules: [{
+                maxWidth: 399,
+                x: 0,
+                y: 0,
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 399,
+                maxWidth: 768,
+                x: 0,
+                y: 0,
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 768,
+                maxWidth: 1024,
+                x: 0,
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }, {
+                minWidth: 1024,
+                x: 0,
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }],
+            series: [{
+                values: [35, 42, 67, 89, 25, 34, 67, 85],
+                lineColor: "#0B82E0",
+                backgroundColor: "#5AC8FA",
+                legendText: "New",
+                legendMarker: {
+                    backgroundColor: "#0B82E0"
+                }
+            }, {
+                values: [12, 20, 35, 61, 42, 45, 50, 61],
+                lineColor: "#FF2D55",
+                backgroundColor: "#FF3B30",
+                legendText: "Capacity",
+                legendMarker: {
+                    backgroundColor: "#FF2D55"
+                }
+            }]
+        }, {
+            type: "bar",
+            title: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    text: "Donated Data vs. Data Needed",
+                    fontSize: 10,
+                    fontColor: "#fff",
+                    textAlign: "left",
+                    paddingLeft: "11%",
+                    backgroundColor: "#0B82E0",
+                    height: "18%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    text: "Donated Data Users vs. Data Needed",
+                    height: "20%",
+                    marginTop: "2%",
+                    fontSize: 11,
+                    fontColor: "#fff",
+                    textAlign: "center",
+                    backgroundColor: "#0B82E0"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Donated Data Users vs. Data Needed Users",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "center",
+                    backgroundColor: "none"
+                }, {
+                    minWidth: 1024,
+                    text: "Donated Data Users vs. Data Needed Users",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "left",
+                    paddingLeft: "16%"
+                }]
+            },
+            subtitle: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    visible: false
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    visible: false
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "AT&T",
+                    fontSize: 8,
+                    fontColor: "#fff",
+                    height: "12%",
+                    marginTop: "18%",
+                    textAlign: "center",
+                    backgroundColor: '#0B82E0'
+                }, {
+                    minWidth: 1024,
+                    text: "AT&T",
+                    fontSize: 9,
+                    fontColor: "#fff",
+                    height: "13%",
+                    marginTop: "19%",
+                    textAlign: "left",
+                    paddingLeft: "16%",
+                    backgroundColor: "#0B82E0"
+                }]
+            },
+            legend: {
+                backgroundColor: "none",
+                borderWidth: 0,
+                borderColor: "none",
+                shadow: 0,
+                toggleAction: "remove",
+                item: {
+                    fontColor: "#444"
+                },
+                mediaRules: [{
+                    minWidth: 10,
+                    maxWidth: 1024,
+                    visible: false
+                }, {
+                    minWidth: 1024,
+                    align: "left",
+                    verticalAlign: "middle"
+                    
+                }]
+            },
+            scaleX: {
+                lineColor: "none",
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                }
+            },
+            scaleY: {
+                lineColor: "none",
+                minValue: 0,
+                maxValue: 100,
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                },
+                guide: {
+                    visible: false
+                }
+            },
+            plot: {
+                alpha: 0.9,
+                borderRadiusTopLeft: 2,
+                borderRadiusTopRight: 2,
+                tooltip: {
+                    placement: "node:top",
+                    offsetY: 0
+                }
+            },
+            plotarea: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    margin: "45% 5% 5% 5%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    margin: "40% 5% 5% 5%"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    margin: "45% 5% 10% 5%"
+                }, {
+                    minWidth: 1024,
+                    margin: "30% 4% 4% 4%"
+                }]
+            },
+            mediaRules: [{
+                maxWidth: 399,
+                x: "50%",
+                y: 0,
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 399,
+                maxWidth: 768,
+                x: 0,
+                y: "15%",
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 768,
+                maxWidth: 1024,
+                x: "25%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }, {
+                minWidth: 1024,
+                x: "25%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }],
+            series: [{
+                values: [35, 42, 67, 89, 25, 34, 67, 85],
+                backgroundColor: "#0B82E0",
+                legendText: "Donated Data"
+            }, {
+                values: [12, 20, 35, 61, 42, 45, 50, 61],
+                backgroundColor: "#FF2D55",
+                legendText: "Data Needed"
+            }]
+        }, {
+            type: "area",
+            title: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    text: "New vs. Capacity",
+                    fontSize: 10,
+                    fontColor: "#fff",
+                    textAlign: "left",
+                    paddingLeft: "11%",
+                    backgroundColor: "#FF9300",
+                    height: "18%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    text: "Downloads vs. Capacity",
+                    height: "20%",
+                    marginTop: "2%",
+                    fontSize: 11,
+                    fontColor: "#fff",
+                    textAlign: "center",
+                    backgroundColor: "#FF9300"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Available Data vs. Capacity",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "center",
+                    backgroundColor: "none"
+                }, {
+                    minWidth: 1024,
+                    text: "Available Data vs. Capacity",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "left",
+                    paddingLeft: "16%"
+                }]
+            },
+            subtitle: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    visible: false
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    visible: false
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Verizon",
+                    fontSize: 8,
+                    fontColor: "#fff",
+                    height: "12%",
+                    marginTop: "18%",
+                    textAlign: "center",
+                    backgroundColor: '#FF9300'
+                }, {
+                    minWidth: 1024,
+                    fontSize: 9,
+                    text: "Verizon",
+                    fontColor: "#fff",
+                    height: "13%",
+                    marginTop: "19%",
+                    textAlign: "left",
+                    paddingLeft: "16%",
+                    backgroundColor: "#FF9300",
+                }]
+            },
+            legend: {
+                backgroundColor: "none",
+                borderWidth: 0,
+                borderColor: "none",
+                shadow: 0,
+                toggleAction: "remove",
+                item: {
+                    fontColor: "#444"
+                },
+                mediaRules: [{
+                    minWidth: 10,
+                    maxWidth: 1024,
+                    visible: false
+                }, {
+                    minWidth: 1024,
+                    align: "left",
+                    verticalAlign: "middle"
+                }]
+            },
+            scaleX: {
+                lineColor: "none",
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                }
+            },
+            scaleY: {
+                lineColor: "none",
+                minValue: 0,
+                maxValue: 300,
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                },
+                guide: {
+                    visible: false
+                }
+            },
+            plot: {
+                aspect: "spline",
+                marker: {
+                    visible: false
+                },
+                tooltip: {
+                    placement: "node:top",
+                    offsetY: 0
+                }
+            },
+            plotarea: {
+                backgroundColor: "#fff",
+                mediaRules: [{
+                    maxWidth: 399,
+                    margin: "45% 5% 5% 5%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    margin: "40% 5% 5% 5%"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    margin: "45% 5% 10% 5%"
+                }, {
+                    minWidth: 1024,
+                    margin: "30% 4% 4% 4%"
+                }]
+            },
+            mediaRules: [{
+                maxWidth: 399,
+                x: 0,
+                y: "45%",
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 399,
+                maxWidth: 768,
+                x: "50%",
+                y: 0,
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 768,
+                maxWidth: 1024,
+                x: "50%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }, {
+                minWidth: 1024,
+                x: "50%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }],
+            series: [{
+                values: [210, 251, 263, 235, 248, 254, 210, 199],
+                lineColor: "#FF9300",
+                backgroundColor: "#FF9300",
+                legendText: "New",
+                legendMarker: {
+                    lineColor: "#0BB1D6",
+                    backgroundColor: "#FF9300",
+                }
+            }, {
+                values: [162, 187, 196, 140, 154, 132, 165, 141],
+                lineColor: '#50584C',
+                backgroundColor: '#50584C',
+                legendText: "Capacity"
+            }]
+        }, {
+            type: "bar",
+            title: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    text: "Donated Data vs. Data Needed",
+                    fontSize: 10,
+                    fontColor: "#fff",
+                    textAlign: "left",
+                    paddingLeft: "11%",
+                    backgroundColor: "#90C653",
+                    height: "18%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    text: "Donated Data Users vs. Data Needed",
+                    height: "20%",
+                    marginTop: "2%",
+                    fontSize: 11,
+                    fontColor: "#fff",
+                    textAlign: "center",
+                    backgroundColor: "#90C653"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Donated Data Users vs. Data Needed Users",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "center",
+                    backgroundColor: "none"
+                }, {
+                    minWidth: 1024,
+                    text: "Donated Data Users vs. Data Needed Users",
+                    height: "16%",
+                    marginTop: "2%",
+                    fontSize: 12,
+                    textAlign: "left",
+                    paddingLeft: "16%"
+                }]
+            },
+            subtitle: {
+                backgroundColor: "#90C653",
+                mediaRules: [{
+                    maxWidth: 399,
+                    visible: false
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    visible: false
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    text: "Verizon",
+                    fontSize: 8,
+                    fontColor: "#fff",
+                    height: "12%",
+                    marginTop: "18%",
+                    textAlign: "center",
+                    backgroundColor: '#90C653'
+                }, {
+                    minWidth: 1024,
+                    fontSize: 9,
+                    text: "Verizon",
+                    fontColor: "#fff",
+                    height: "13%",
+                    marginTop: "19%",
+                    textAlign: "left",
+                    paddingLeft: "16%",
+                    backgroundColor: "#90C653",
+                }]
+            },
+            legend: {
+                backgroundColor: "none",
+                borderWidth: 0,
+                borderColor: "none",
+                shadow: 0,
+                toggleAction: "remove",
+                item: {
+                    fontColor: "#444"
+                },
+                mediaRules: [{
+                    minWidth: 10,
+                    maxWidth: 1024,
+                    visible: false
+                }, {
+                    minWidth: 1024,
+                    align: "left",
+                    verticalAlign: "middle"
+                }]
+            },
+            scaleX: {
+                lineColor: "none",
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                }
+            },
+            scaleY: {
+                lineColor: "none",
+                minValue: 0,
+                maxValue: 100,
+                item: {
+                    visible: false
+                },
+                tick: {
+                    visible: false
+                },
+                guide: {
+                    visible: false
+                }
+            },
+            plot: {
+                alpha: 0.9,
+                borderRadiusTopLeft: 2,
+                borderRadiusTopRight: 2,
+                tooltip: {
+                    placement: "node:top",
+                    offsetY: 0
+                }
+            },
+            plotarea: {
+                mediaRules: [{
+                    maxWidth: 399,
+                    margin: "45% 5% 5% 5%"
+                }, {
+                    minWidth: 399,
+                    maxWidth: 768,
+                    margin: "40% 5% 5% 5%"
+                }, {
+                    minWidth: 768,
+                    maxWidth: 1024,
+                    margin: "45% 5% 10% 5%"
+                }, {
+                    minWidth: 1024,
+                    margin: "30% 4% 4% 4%"
+                }]
+            },
+            mediaRules: [{
+                maxWidth: 399,
+                x: "50%",
+                y: "45%",
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 399,
+                maxWidth: 768,
+                x: "50%",
+                y: "15%",
+                height: "15%",
+                width: "50%"
+            }, {
+                minWidth: 768,
+                maxWidth: 1024,
+                x: "75%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }, {
+                minWidth: 1024,
+                x: "75%",
+                y: 0,
+                height: "20%",
+                width: "25%"
+            }],
+            series: [{
+                values: [35, 42, 67, 89, 25, 34, 67, 85],
+                backgroundColor: "#0BB1D6",
+                lineColor: "#0BB1D6",
+                legendText: "Donated Data"
+            }, {
+                values: [35, 42, 67, 89, 25, 34, 67, 85],
+                backgroundColor: "#50584C",
+                lineColor: "#50584C",
+                legendText: "Data Needed"
+            }]
+        }]
+    };
+    
+    zingchart.render({
+        id: 'myChart',
+        data: myConfig,
+        height: '100%',
+        width: '100%'
+    });
+    
+    zingchart.render({
+        id: 'chart2',
+        height: '100%',
+        width: '100%',
+        data: {
+            type: "pie",
+            backgroundColor: "#ffa300",
+            title: {
+                text: "Data Utilization",
+                textAlign: "left",
+                marginLeft: "10px",
+                adjustLayout: true,
+                fontColor: "white"
+            },
+            subtitle: {
+                text: "Amount of device usage",
+                textAlign: "left",
+                marginLeft: "10px",
+                fontColor: "white"
+            },
+            borderRadius: 4,
+            valueBox: {
+                visible: true
+            },
+            plot: {
+                slice: 90,
+                refAngle: 270,
+                detach: false,
+                hoverState: {
+                    visible: false
+                },
+                valueBox: {
+                    visible: true,
+                    type: "first",
+                    connected: false,
+                    placement: "center",
+                    text: "%v%",
+                    fontColor: "white",
+                    fontSize: "20px"
+                },
+                tooltip: {
+                    fontColor: "#333",
+                    rules: [{
+                        rule: "%i == 0",
+                        text: "%v Created",
+                        shadow: false,
+                        borderRadius: 4
+                    }, {
+                        rule: "%i == 1",
+                        text: "%v Left",
+                        shadow: false,
+                        borderRadius: 4
+                    }]
+                }
+            },
+            plotarea: {
+                margin: "dynamic",
+            },
+            series: [{
+                values: [30],
+                backgroundColor: "#ffffff",
+                borderWidth: "0px",
+                shadow: 0
+            }, {
+                values: [70],
+                backgroundColor: "#dadada",
+                alpha: "0.5",
+                borderWidth: "1px",
+                borderWidth: "1px",
+                shadow: 0,
+                valueBox: {
+                    visible: false
+                }
+            }]
+            
+        }
+    });
+    
+    zingchart.render({
+        id: 'chart6',
+        height: '80%',
+        width: '100%',
+        data: {
+            type: 'line',
+            backgroundColor: "#333",
+            scaleY: {
+                visible: false
+            },
+            scaleX: {
+                visible: false
+            },
+            labels: [{
+                text: "Scanning Available Wifi",
+                x: "3%",
+                y: "44%",
+                fontSize: "40px",
+                fontColor: "white"
+            }],
+            plot: {
+                borderWidth: "2px",
+                marker: {
+                    visible: false
+                },
+                rules: [{
+                    rule: "%v > 8",
+                    lineColor: "#0380ab"
+                }, {
+                    rule: "%v < 1",
+                    lineColor: "#04a9e1"
+                }]
+            },
+            plotarea: {
+                margin: '70 25 20 23'
+            },
+            series: [{
+                values: generateSeriesData(150),
+                backgroundColor: "#EA172F",
+                
+            }]
+        }
+    });
+    zingchart.render({
+        id: 'chart2',
+        height: '100%',
+        width: '100%',
+        data: {
+            type: "pie",
+            backgroundColor: "#ffa300",
+            title: {
+                text: "Utilization",
+                textAlign: "left",
+                marginLeft: "10px",
+                adjustLayout: true,
+                fontColor: "white"
+            },
+            subtitle: {
+                text: "Donated Data Used",
+                textAlign: "left",
+                marginLeft: "10px",
+                fontColor: "white"
+            },
+            borderRadius: 4,
+            valueBox: {
+                visible: true
+            },
+            plot: {
+                slice: 90,
+                refAngle: 270,
+                detach: false,
+                hoverState: {
+                    visible: false
+                },
+                valueBox: {
+                    visible: true,
+                    type: "first",
+                    connected: false,
+                    placement: "center",
+                    text: "%v%",
+                    fontColor: "white",
+                    fontSize: "20px"
+                },
+                tooltip: {
+                    fontColor: "#333",
+                    rules: [{
+                        rule: "%i == 0",
+                        text: "%v Created",
+                        shadow: false,
+                        borderRadius: 4
+                    }, {
+                        rule: "%i == 1",
+                        text: "%v Left",
+                        shadow: false,
+                        borderRadius: 4
+                    }]
+                }
+            },
+            plotarea: {
+                margin: "dynamic",
+            },
+            series: [{
+                values: [30],
+                backgroundColor: "#ffffff",
+                borderWidth: "0px",
+                shadow: 0
+            }, {
+                values: [70],
+                backgroundColor: "#dadada",
+                alpha: "0.5",
+                borderWidth: "1px",
+                borderWidth: "1px",
+                shadow: 0,
+                valueBox: {
+                    visible: false
+                }
+            }]
+            
+        }
+    });
+    zingchart.render({
+        id: 'chart8',
+        height: '100%',
+        width: '100%',
+        data: {
+            type: 'hbar',
+            backgroundColor: '#ffa300',
+            plotarea: {
+                margin: 'dynamic'
+            },
+            title: {
+                text: "Donations Per Carrier",
+                textAlign: "left",
+                fontColor: "white",
+                adjustLayout: true
+            },
+            subtitle: {
+                fontColor: "white",
+                textAlign: "left"
+            },
+            scaleX: {
+                lineColor: "transparent",
+                item: {
+                    fontColor: "white",
+                },
+                tick: {
+                    lineColor: "transparent",
+                },
+                labels: ["Verizon", "ATT", "Tmobile", "Sprint", "Private/Gov"]
+            },
+            scaleY: {
+                maxValue: 10,
+                lineColor: "transparent",
+                item: {
+                    fontColor: "white"
+                },
+                guide: {
+                    lineStyle: "solid",
+                    lineColor: "#a1dd9d"
+                },
+                tick: {
+                    lineColor: "#a1dd9d",
+                }
+            },
+            plot: {
+                hoverState: {
+                    visible: false
+                },
+                valueBox: {
+                    placement: 'top'
+                },
+                tooltip: {
+                    visible: false
+                }
+            },
+            series: [{
+                values: [2, 3, 5, 6, 4],
+                backgroundColor: "#fff"
+            }]
+        }
+    })    
+    function generateSeriesData(num) {
+        var values = [];
+        var startDate = 1349617440000;
+        for (var i = 0; i < num; i++) {
+            values.push([(startDate + (i * 50000)), Math.floor(Math.random() * 30)])
+        }
+        return values;
+    }
+    
+    // make data appear to be moving
+    setInterval(function() {
+        zingchart.exec('chart6', 'setseriesvalues', {
+            plotindex: 0,
+            values: generateSeriesData(50)
+        });
+    }, 600);
+    </script>
+    
+</apex:component>

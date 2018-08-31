@@ -1,0 +1,8 @@
+<apex:page standardStylesheets="false">
+    <c:ibmMyCloudTitle />
+    <c:ibmMyCloudSketch />
+    <c:ibmMyCloudTags />
+<iframe width="100%" height="400px" frameborder="0" scrolling="no" src="https://arcg.is/00n1im"></iframe>
+    <c:ibmMyCloudCharts />
+    <c:ibmMyCloudFooter />
+    </apex:page>
