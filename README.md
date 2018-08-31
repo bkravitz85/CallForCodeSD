@@ -1,76 +1,108 @@
-# Call For Code -- Salesforce Einstein
-## Section 1
-###### Section 1 Subheading
+# CallForCode Donate Your Unused Data to Firerelief Efforts
 
-## Section 2
-###### Section 1 Subheading
-
-## Section 3
-###### Section 1 Subheading
-
-## Section 4
-###### Section 1 Subheading
+## Telling Your Datastory
 
 
+![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)
 
-**This is bold text**
+On August 19th the planet celebrated the United Nation's Humanitarian Day to raise awareness of first responders who provide aid immediately after disasters.
 
+> Call for Code aims to help improve the lives of those communities who are most threatened by natural disasters and in turn, will help ease and improve the important role that humanitarian agencies play.
 
-**This text is _extremely_ important**
+Our project utilizes 5 myCloud Services and provides data donations to disaster first responders. Our system uses IBM Data Integration Services to send data to and from Salesforce, Machine Learning to find most at risk areas and Blockchain to record asset transfers. (Data)
+## Items We Used
 
+| Item | Location | Description |
+| --- | --- | --- |
+| Salesforce | login.salesforce.com | Developer Edition of Salesforce with Analtyics Studio |
+| IBM myCloud | https://console.bluemix.net/catalog/ | IBM's Catalog of Services |
+| Weather Company API | http://developer.weather.com | Raw Data to Use for Competition CSV Data File and JSON Data from the API | APP Connect | https://console.bluemix.net/catalog/ | Allows to integrate IBM Data to Salesforce
 
-You can quote text with a >.
+## HIC MANEBIMUS OPTIME
 
-In the words of Abraham Lincoln:
+In order to build an event driven disaster project, lets define a few metrics so that our datasets can be meaningful and perform to our scope:
 
-> Pardon my French
+| **Define Scope:** | **Predict where first responders will have their data throttled....** |
+| --- | --- |
+| **Define Performance:** | **Our target accurancy should be over < 70%** |
+| **Context: ** | **Using IBM Weather Company Data along with Wigle.net API we can predict with 70% or greater accuracy which areas will have deficient bandwidth resources (Cell, Wifi, etc) .** |
+| Solution Data:  | Using Machine Learning Workflows to process and transform Weather Company Data to create a prediction model, this model must predict which homes/devices will be effected by impending types of disasters. |
 
+## Creating Object Model
 
-You can call out code or a command within a sentence with single backticks. The text within the backticks will not be formatted.
+Let's take our proposed data types and transform them into some metadata!
 
-Use `git status` to list all new or modified files that haven't yet been committed.
+First we are going to define a few items:
 
-Rendered inline code block
+| Item | Description |
+| --- | --- |
+| Household (Account) | Describes homes with Geolocation, Value, Income, Gender |
+| Disaster__c | Disaster Types with Geolocation, Intensity, Time |
+| HouseholdDisaster__e | Platform Event that can return values and transform multiple objects |
 
-To format code or text into its own distinct block, use triple backticks.
+![pe](/Users/kr4v/Documents/pe.gif)![pe](file:///Users/kr4v/Documents/pe.gif)
 
-Some basic Git commands are:
+## Implementation
+
+```java
+/**
+ * ────────────────────────────────────────────────────────────────────────────────────────────────
+ * Code Review: IBM Apex App Connect Platform Event
+ * Class Name: appConnect_DisasterEvent
+ * Description: Executes upsert of disaster data driven from current API
+ * ────────────────────────────────────────────────────────────────────────────────────────────────
+ * @ReviewedBy   Brandon Kravitz    brandon.kravitz@bluewolfgroup.com
+ * @thisCodeReviewTestClass            appConnect_DisasterEvent
+ **/
+
+// Trigger for listening to HouseDisaster__e events.
+trigger HouseDisasterEventTrigger on HouseDisaster__e(after insert) {
+ // List to hold all Disasters to be created.
+ List < Disaster__c > disasters = new List < Disaster__c > ();
+
+ // Documentation ID       
+ // Iterate through each notification.
+ for (HouseDisaster__e event: Trigger.New) {
+  // Let's parse through our long text field and grab all disaster objects
+  JSONParser parser = JSON.createParser(event.Disaster__c);
+  while (parser.nextToken() != null) {
+   if (parser.getCurrentToken() == JSONToken.START_ARRAY) {
+    while (parser.nextToken() != null) {
+     if (parser.getCurrentToken() == JSONToken.START_OBJECT) {
+      //  System Debug Disasters
+      DisasterClass d = (DisasterClass) parser.readValueAs(DisasterClass.class);
+      system.debug('GEOLOCATION long:: ' + d.longitude + 'lat:: ' + d.latitude);
+      system.debug('Size of list items: ' + d.x_id);
+      String s = JSON.serialize(d);
+      system.debug('Serialized Disaster: ' + s);
+
+      // Skip the child start array and start object markers.
+      parser.skipChildren();
+
+      Disaster__c disaster = new Disaster__c();
+      if (d.x_id != null) disaster.Document_ID__c = d.x_id;
+      if (d.satellite != null) disaster.Satellite__c = d.satellite;
+      if (d.bright_ti4 != null) disaster.Bright_ti4__c = Decimal.valueOf(d.bright_ti4);
+      if (d.bright_ti5 != null) disaster.bright_ti5__c = Decimal.valueOf(d.bright_ti5);
+      if (d.scan != null) disaster.scan__c = Decimal.valueOf(d.scan);
+      if (d.track != null) disaster.track__c = Decimal.valueOf(d.track);
+      if (d.confidence != null) disaster.confidence__c = d.confidence;
+      if (d.longitude != null) disaster.longitude__c = Decimal.valueOf(d.longitude);
+      if (d.latitude != null) disaster.latitude__c = Decimal.valueOf(d.latitude);
+      if (d.latitude != null && d.longitude != null) disaster.Geolocation__longitude__s = Decimal.valueOf(d.longitude);
+      if (d.latitude != null && d.longitude != null) disaster.Geolocation__latitude__s = Decimal.valueOf(d.latitude);
+
+      disasters.add(disaster);
+     }
+    }
+   }
+  }
+  // Insert all Disasters corresponding to events received.    
+  upsert disasters;
+ }
+}
 ```
-git status
-git add
-git commit
-```
 
+## Code
 
-You can create an inline link by wrapping link text in brackets [ ], and then wrapping the URL in parentheses ( ). You can also use the keyboard shortcut command + k to create a link.
-
-This site was built using [GitHub Pages](https://pages.github.com/).
-
-
-To create a task list, preface list items with a regular space character followed by [ ]. To mark a task as complete, use [x].
-
-
-
-You can mention a person or team on GitHub by typing @ plus their username or team name. This will trigger a notification and bring their attention to the conversation. People will also receive a notification if you edit a comment to mention their username or team name.
-
-@github/support What do you think about these updates?
-
-
-You can add emoji to your writing by typing :EMOJICODE:.
-
-@octocat :+1: This PR looks great - it's ready to merge! :shipit:
-
-Rendered emoji
-
-Typing : will bring up a list of suggested emoji. The list will filter as you type, so once you find the emoji you're looking for, press Tab or Enter to complete the highlighted result.
-
-For a full list of available emoji and codes, check out emoji-cheat-sheet.com.
-
-
-You can tell GitHub to ignore (or escape) Markdown formatting by using \ before the Markdown character.
-
-Let's rename \*our-new-project\* to \*our-old-project\*.
-
-Rendered escaped character
-
-For more information, see Daring Fireball's "Markdown Syntax."
+##  Wrap Up
