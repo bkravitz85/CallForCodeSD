@@ -10,6 +10,9 @@ On August 19th the planet celebrated the United Nation's Humanitarian Day to rai
 > Call for Code aims to help improve the lives of those communities who are most threatened by natural disasters and in turn, will help ease and improve the important role that humanitarian agencies play.
 
 Our project utilizes 5 myCloud Services and provides data donations to disaster first responders. Our system uses IBM Data Integration Services to send data to and from Salesforce, Machine Learning to find most at risk areas and Blockchain to record asset transfers. (Data)
+
+
+![datasci](https://i1.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/datasci.png?w=980&ssl=1)
 ## Items We Used
 
 | Item | Location | Description |
@@ -40,7 +43,7 @@ First we are going to define a few items:
 | Disaster__c | Disaster Types with Geolocation, Intensity, Time |
 | HouseholdDisaster__e | Platform Event that can return values and transform multiple objects |
 
-![pe](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/pe.gif?w=980&ssl=1)
+![pe](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/pe.gif)
 
 ## Implementation
 
