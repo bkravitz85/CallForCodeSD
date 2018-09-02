@@ -1,9 +1,9 @@
 # CallForCode Donate Your Unused Data to Firerelief Efforts
 
-## Telling Your Datastory
+## Igniting Our Inspiration
 
 
-![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)
+![eap](https://media.giphy.com/media/vJzUgsALABTkk/giphy.gif)
 
 On August 19th the planet celebrated the United Nation's Humanitarian Day to raise awareness of first responders who provide aid immediately after disasters.
 
@@ -40,7 +40,7 @@ First we are going to define a few items:
 | Disaster__c | Disaster Types with Geolocation, Intensity, Time |
 | HouseholdDisaster__e | Platform Event that can return values and transform multiple objects |
 
-![pe](/Users/kr4v/Documents/pe.gif)![pe](file:///Users/kr4v/Documents/pe.gif)
+![pe](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/pe.gif?w=980&ssl=1
 
 ## Implementation
 
@@ -103,6 +103,11 @@ trigger HouseDisasterEventTrigger on HouseDisaster__e(after insert) {
 }
 ```
 
-## Code
+## Integration
+![disasterFields](https://i1.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/disasterFields.png?w=980&ssl=1)
+Data retention and integration is the hallmark of our project. Leveraging several powerful platforms supercharges the ability for a call for code project to send and recieve data. To store the bulk of our unfiltered data, we utilized IBM Cloudant No SQL database to house our call for code project data. Our data utilized IBM's new APP Connect Service to send and recieve data from Cloudant to Salesforce, including IBM's Weather API, Wigle.net Devices and NASA's VISSA Fire data. 
+App Connect makes it easy to create bulk data sends from NASA data, via a Callable Flow, Scheduled Send or API Extension.
+We've plugged APP Connect into Salesforce Platform Events, which allows us to make alert notifications in real time, which in turn trigger geolocation distances, that will make it available to be analyzed.
 
-##  Wrap Up
+![flowHD](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/flowHD.gif?w=980&ssl=1)
+##  Keep Going!!!
