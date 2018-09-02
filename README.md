@@ -40,7 +40,7 @@ First we are going to define a few items:
 | Disaster__c | Disaster Types with Geolocation, Intensity, Time |
 | HouseholdDisaster__e | Platform Event that can return values and transform multiple objects |
 
-![pe](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/pe.gif?w=980&ssl=1
+![pe](https://i0.wp.com/tellyourdatastory.com/wp-content/uploads/2018/08/pe.gif?w=980&ssl=1)
 
 ## Implementation
 
